@@ -1,0 +1,73 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./src/components/Slideshow.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+.Slideshow_slideshowWrapper__Mb_pS {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.Slideshow_slideshowContainer__HZ7aF {
+  position: relative;
+  width: 90vw;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Slideshow_slide__0HPm6 {
+  position: absolute;
+  width: 40vw;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  border-radius: 20px;
+  will-change: transform;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Slideshow_slide__0HPm6 h2 {
+  color: white;
+  font-size: 6rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.Slideshow_indicators__V4_Rb {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.Slideshow_indicator__Lvng6 {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.Slideshow_indicator__Lvng6.Slideshow_active__QQBA1 {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Remove these unused styles */
+.Slideshow_controls__f4OtI,
+.Slideshow_progressCircles__TP3IH,
+.Slideshow_progressCircle__KJSsO,
+.Slideshow_progressBg__DqRsJ,
+.Slideshow_progressBar__Nfe_l,
+.Slideshow_slideNumber__ZfCVM {
+  display: none;
+} 
