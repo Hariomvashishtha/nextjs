@@ -7,7 +7,9 @@ const TOTAL_SLIDES = 4;
 
 const Slideshow = () => {
   const slidesRef = useRef<HTMLDivElement[]>([]);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     // Set initial positions
@@ -47,14 +49,14 @@ const Slideshow = () => {
     const stayDuration = 2;
     const totalDuration = duration + stayDuration;
     
-    const tl = gsap.timeline({ repeat: -1 });
+    timelineRef.current = gsap.timeline({ repeat: -1, paused: true });
     
     slidesRef.current.forEach((slide, index) => {
       const isLast = index === TOTAL_SLIDES - 1;
       const nextIndex = isLast ? 0 : index + 1;
       const prevIndex = index === 0 ? TOTAL_SLIDES - 1 : index - 1;
       
-      tl.add(() => {
+      timelineRef.current!.add(() => {
         setCurrentSlide(index);
         
         slidesRef.current.forEach((s, i) => {
@@ -94,13 +96,33 @@ const Slideshow = () => {
         });
       }, index * totalDuration);
 
-      tl.to({}, { duration: stayDuration });
+      timelineRef.current!.to({}, { duration: stayDuration });
 
       if (isLast) {
-        tl.set(slidesRef.current[0], { x: '100%' });
+        timelineRef.current!.set(slidesRef.current[0], { x: '100%' });
       }
     });
+
+    // Start the animation
+    timelineRef.current.play();
+
+    return () => {
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+      }
+    };
   }, []);
+
+  const togglePlayPause = () => {
+    if (timelineRef.current) {
+      if (isPlaying) {
+        timelineRef.current.pause();
+      } else {
+        timelineRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   const addToRefs = (el: HTMLDivElement) => {
     if (el && !slidesRef.current.includes(el)) {
@@ -125,13 +147,23 @@ const Slideshow = () => {
         </div>
       </div>
       
-      <div className={styles.indicators}>
-        {[...Array(TOTAL_SLIDES)].map((_, index) => (
-          <div 
-            key={index} 
-            className={`${styles.indicator} ${currentSlide === index ? styles.active : ''}`} 
-          />
-        ))}
+      <div className={styles.controls}>
+        <button 
+          className={styles.playPauseButton} 
+          onClick={togglePlayPause}
+          aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+        >
+          {isPlaying ? '⏸️' : '▶️'}
+        </button>
+        
+        <div className={styles.indicators}>
+          {[...Array(TOTAL_SLIDES)].map((_, index) => (
+            <div 
+              key={index} 
+              className={`${styles.indicator} ${currentSlide === index ? styles.active : ''}`} 
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

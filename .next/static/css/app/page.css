@@ -42,11 +42,44 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.Slideshow_controls__f4OtI {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.Slideshow_playPauseButton___pDdQ {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.Slideshow_playPauseButton___pDdQ:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.Slideshow_playPauseButton___pDdQ:active {
+  transform: scale(0.95);
+}
+
 .Slideshow_indicators__V4_Rb {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: 2rem;
 }
 
 .Slideshow_indicator__Lvng6 {
@@ -63,7 +96,6 @@
 }
 
 /* Remove these unused styles */
-.Slideshow_controls__f4OtI,
 .Slideshow_progressCircles__TP3IH,
 .Slideshow_progressCircle__KJSsO,
 .Slideshow_progressBg__DqRsJ,
